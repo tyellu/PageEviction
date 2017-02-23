@@ -40,6 +40,38 @@ int allocate_frame(pgtbl_entry_t *p) {
 		// Write victim page to swap, if needed, and update pagetable
 		// IMPLEMENTATION NEEDED
 
+		//Get the frame the evict_fcn returns from coremap
+		pgtbl_entry_t *victim_page = coremap[frame].pte;
+
+		//case 1: victim frame has not been modified hence a clean eviction
+		if((victim_page->frame) & (~PG_DIRTY)){
+			// mark frame invalid
+      		victim_page->frame = victim_page->frame & (~PG_VALID);
+     		// increment clean evict count
+			evict_clean_count++;
+		}
+		//case 2: victim frame has been modified hence a dirty eviction
+		//swap out page to swapfile and increment evict_dirty_count
+		else{
+			
+	      	
+	      	int swap_offset = swap_pageout(frame, victim_page->swap_off);
+
+	      	//checks if swap_offset is valid
+	      	assert(swap_offset != INVALID_SWAP);
+
+	      	// update swap_offset
+	     	victim_page->swap_off = swap_offset;
+	    
+	   		// set victim frame invalid and on swap
+	      	victim_page->frame &= ~PG_VALID;
+	      	victim_page->frame |= PG_ONSWAP;
+
+      		// update dirty evict count
+			evict_dirty_count++;
+
+		}
+
 
 	}
 
