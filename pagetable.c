@@ -188,7 +188,7 @@ char *find_physpage(addr_t vaddr, char type) {
 			init_frame(new_frame, vaddr);
 
 			// Do we need to bitshift here?
-			// p->frame = frame << PAGE_SHIFT;
+			p->frame = new_frame << PAGE_SHIFT;
 
 			// set it to dirty
 			p->frame |= PG_DIRTY;
@@ -201,7 +201,7 @@ char *find_physpage(addr_t vaddr, char type) {
 			swap_pagein(new_frame, p->swap_off);
 
 			// bit shifting left by PAGE_SHIFT
-			p->frame = frame << PAGE_SHIFT;
+			p->frame = new_frame << PAGE_SHIFT;
 
 			// Mark it as not dirty
 			p->frame &= ~PG_DIRTY;
