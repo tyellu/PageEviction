@@ -192,14 +192,13 @@ char *find_physpage(addr_t vaddr, char type) {
 
     		// set it to dirty
     		p->frame |= PG_DIRTY;
-		}
 
 		// if frame is on swap, then we need to bring it in
-		else{
+		}else{
 			
 			// get frame from coremap and read data from swap into it
-    		unsigned new_frame = allocate_frame(p);
-			swap_pagein(new_frame, p->swap_off);
+ 			unsigned new_frame = allocate_frame(p);
+ 			swap_pagein(new_frame, p->swap_off);
 
 			// bit shifting left by PAGE_SHIFT
 			p->frame = frame << PAGE_SHIFT;
