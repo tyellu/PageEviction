@@ -185,10 +185,11 @@ char *find_physpage(addr_t vaddr, char type) {
 
 			// get frame from coremap and initialize
 			int new_frame = allocate_frame(p);
-			init_frame(new_frame, vaddr);
 
 			// Do we need to bitshift here?
 			p->frame = new_frame << PAGE_SHIFT;
+
+			init_frame(new_frame, vaddr);
 
 			// set it to dirty
 			p->frame |= PG_DIRTY;
@@ -259,7 +260,7 @@ void print_pagetbl(pgtbl_entry_t *pgtbl) {
 				printf("in frame %d\n",pgtbl[i].frame >> PAGE_SHIFT);
 			} else {
 				assert(pgtbl[i].frame & PG_ONSWAP);
-				printf("ONSWAP, at offset %lu\n",pgtbl[i].swap_off);
+				printf("ONSWAP, at offset %lld\n",pgtbl[i].swap_off);
 			}           
 		}
 	}
