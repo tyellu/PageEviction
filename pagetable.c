@@ -169,7 +169,8 @@ char *find_physpage(addr_t vaddr, char type) {
 		pgdir[idx] = init_second_level();
 
 	// Use vaddr to get index into 2nd-level page table and initialize 'p'      
-	pgtbl_entry_t* pgtbl = (pgtbl_entry_t*)(pgdir[idx].pde & PAGE_MASK);
+	//pgtbl_entry_t* pgtbl = (pgtbl_entry_t*)(pgdir[idx].pde & PAGE_MASK);
+	pgtbl_entry_t* pgtbl = (pgtbl_entry_t*)(pgdir[idx].pde - 1);
 	p = pgtbl + PGTBL_INDEX(vaddr);
 
 	// Check if p is valid or not, on swap or not, and handle appropriately
@@ -199,7 +200,7 @@ char *find_physpage(addr_t vaddr, char type) {
 			
 			// get frame from coremap and read data from swap into it
 			unsigned new_frame = allocate_frame(p);
-			swap_pagein(new_frame, p->swap_off);
+			assert(swap_pagein(frame, p->swap_off) == 0);
 
 			// bit shifting left by PAGE_SHIFT
 			p->frame = new_frame << PAGE_SHIFT;
@@ -208,7 +209,7 @@ char *find_physpage(addr_t vaddr, char type) {
 			p->frame &= ~PG_DIRTY;
 
 			// Mark it as not on swap
-			p->frame &= ~PG_ONSWAP;
+			p->frame |= PG_ONSWAP;
 		}
 	// if valid
 	} else {
