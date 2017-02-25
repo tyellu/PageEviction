@@ -44,7 +44,7 @@ int allocate_frame(pgtbl_entry_t *p) {
 		pgtbl_entry_t *victim_page = coremap[frame].pte;
 
 		//case 1: victim frame has not been modified hence a clean eviction
-		if((victim_page->frame) & (~PG_DIRTY)){
+		if(!((victim_page->frame) & (PG_DIRTY))){
 			// mark frame invalid
 			victim_page->frame = victim_page->frame & (~PG_VALID);
 			// increment clean evict count
