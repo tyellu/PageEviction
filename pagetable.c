@@ -200,7 +200,7 @@ char *find_physpage(addr_t vaddr, char type) {
 			
 			// get frame from coremap and read data from swap into it
 			unsigned new_frame = allocate_frame(p);
-			assert(swap_pagein(frame, p->swap_off) == 0);
+			assert(swap_pagein(new_frame, p->swap_off) == 0);
 
 			// bit shifting left by PAGE_SHIFT
 			p->frame = new_frame << PAGE_SHIFT;
