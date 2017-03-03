@@ -38,6 +38,7 @@ bool *contains;
 
 int lru_evict() {
 	//Ensure there is a frame to evict
+	printf("evict runs\n");
 	assert(!mainQ->isEmpty);
 
 	//Otherwise grab frame number from the front of the queue
@@ -61,6 +62,7 @@ int lru_evict() {
 	//The queue now doesn't contain frameToEvict, set indicator
 	contains[frameToEvict]=0;
 
+	printf("evict runs fine\n");
 	return frameToEvict;
 }
 
@@ -69,6 +71,7 @@ int lru_evict() {
  * Input: The page table entry for the page that is being accessed.
  */
 void lru_ref(pgtbl_entry_t *p) {
+	printf("ref runs\n");
 
 	//If the frame is contained our queue
 	if (contains[p->frame]){
@@ -121,6 +124,7 @@ void lru_ref(pgtbl_entry_t *p) {
 		//Add it to our contained queue
 		contains[p->frame] = 1;
 	}
+	printf("ref runs fine\n");
 	return;
 }
 
@@ -129,6 +133,7 @@ void lru_ref(pgtbl_entry_t *p) {
  * replacement algorithm 
  */
 void lru_init() {
+	printf("init runs\n");
 	//allocate the main queue and perform bookkeeping
 	mainQ = (Queue*)malloc(sizeof(QNode)*memsize);
 
@@ -139,4 +144,5 @@ void lru_init() {
 	//Allocate the contains array and wipe everything to 0
 	contains = malloc(sizeof(bool)*memsize);
 	memset(contains, 0, sizeof(bool) * memsize);
+	printf("init runs fine\n");
 }
