@@ -184,7 +184,7 @@ char *find_physpage(addr_t vaddr, char type) {
 		if((p->frame & PG_ONSWAP)==0){
 
 			// get a new frame number from coremap and initialize
-			int new_frame = allocate_frame(p);
+			unsigned int new_frame = allocate_frame(p);
 
 			//bit shift over when storing into PTE to leave space for bits
 			p->frame = new_frame << PAGE_SHIFT;
@@ -199,7 +199,7 @@ char *find_physpage(addr_t vaddr, char type) {
 		}else{
 			
 			// get frame from coremap and read data from swap into it
-			unsigned new_frame = allocate_frame(p);
+			unsigned int new_frame = allocate_frame(p);
 
 			// try to read data from swap into frame
 			assert(swap_pagein(new_frame, p->swap_off) == 0);
@@ -207,7 +207,7 @@ char *find_physpage(addr_t vaddr, char type) {
 			//bit shift over when storing into PTE to leave space for bits
 			p->frame = new_frame << PAGE_SHIFT;
 
-			// Mark it as not dirty since it was just swapped in and not changed
+			// Mark not dirty since swapped in, to count dirty swaps
 			p->frame &= ~PG_DIRTY;
 
 			// Mark it as not on swap since it was just swapped in
