@@ -34,7 +34,7 @@ Queue* createQueue(){
 	return queue;
 }
 
-QNode* newQNode( unsigned pageNumber )
+QNode* newQNode( int pageNumber )
 {
     // Allocate memory and assign 'pageNumber'
     QNode* temp = (QNode *)malloc( sizeof( QNode ) );
@@ -56,30 +56,30 @@ bool *contains;
  * otherwise, only set front
  */
 void enqueue(int frameRef){
-
+	printf("enque runs\n");
 	//create new node with frame reference number
 	QNode* new = newQNode(frameRef);
 	
-
 	//If this is the first frame to be referenced i.e. the queue is empty
 	if (mainQ->isEmpty){
 
 		mainQ->front = mainQ->rear = new;
 		mainQ->isEmpty = 0;
-		printf("it was empty, it is now %d\n", mainQ->isEmpty);
+		// printf("it was empty, it is now %d\n", mainQ->isEmpty);
 
 	//Otherwise set new front
 	}else{
-		printf("not empty runs\n");
+		// printf("not empty runs\n");
 		new->next = mainQ->front;
 		mainQ->front->prev=new;
 		mainQ->front=new;
 	}
 
 	contains[frameRef]=1;
-	printf("tail after enq is %d\n", mainQ->rear->frameNumber);
+	// printf("tail after enq is %d\n", mainQ->rear->frameNumber);
 
 	return;
+	printf("enque ends\n");
 }
 
 /* Removes the tail of the queue, free the memory, and return the
@@ -93,9 +93,12 @@ int dequeue(){
 	//set new node to hold the last element
 	QNode* temp = mainQ->rear;
 	int toRet=temp->frameNumber;
-	free(temp);
+
 	//remove the last element from queue
 	mainQ->rear = mainQ->rear->prev;
+	mainQ->rear->next = NULL;
+	
+	free(temp);
 
 	//Set contains to no
 	contains[toRet]=0;
@@ -103,8 +106,8 @@ int dequeue(){
 	return toRet;
 }
 
-QNode* find (Queue* queue, int frameRef){
-	QNode* temp = queue->front;
+QNode* find (int frameRef){
+	QNode* temp = mainQ->front;
 	while (temp->frameNumber!=frameRef){
 		temp = temp->next;
 	}
@@ -128,13 +131,9 @@ int lru_evict() {
 
 void printq(){
 
-	printf("printq runs\n");
-
-	QNode* temp1 = newQNode(mainQ->front->frameNumber);
+	QNode* temp1 = mainQ->front;
 
 	printf("The current queue is %d ", temp1->frameNumber);
-
-	printf("Is the next null?: %d\n", temp1->next == NULL);
 
 	while(temp1->next!=NULL){
 		temp1=temp1->next;
@@ -142,7 +141,6 @@ void printq(){
 	}
 	printf("\n");
 
-	free(temp1);
 	return;
 }
 
@@ -159,19 +157,18 @@ void lru_ref(pgtbl_entry_t *p) {
 	if (!contains[frameRef]){
 
 		//Create new node, and add to front of queue
-		printf("enque runs\n");
 		enqueue(frameRef);
 
 
 	//Otherwise if the node is not at the front, then move it to the front
 	}else if(mainQ->front->frameNumber!=frameRef){
 		//Find the corresponding node
-		QNode* temp = find(mainQ, frameRef);
+		QNode* temp = find(frameRef);
 
 		//unlink from current position
 		temp->prev->next = temp->next;
 		if(temp->next)
-			temp->prev->next=temp->next;
+			temp->next->prev=temp->prev;
 
 		//If temp was the rear node, then change the rear as temp will be new front
 		if (mainQ->rear == temp){
@@ -187,7 +184,7 @@ void lru_ref(pgtbl_entry_t *p) {
 	}
 	printq();
 	// printf("q head = %d and q tail = %d\n", mainQ->front->frameNumber, mainQ->rear->frameNumber);
-	printf("ref ends\n\nthe q head is %d\n", mainQ->front->frameNumber);
+	printf("ref ends\n\n");
 	return;
 }
 
