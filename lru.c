@@ -121,11 +121,12 @@ QNode* find (int frameRef){
 
 int lru_evict() {
 	printf("evict begins\n");
+
 	//Ensure there is a frame to evict
 	assert(mainQ->isEmpty==0);
 
 	int frameToEvict = dequeue();
-	printf("evict ends\n\n");
+	printf("evict ends, evicted %d\n", frameToEvict);
 	return frameToEvict;
 }
 
@@ -149,9 +150,9 @@ void printq(){
  * Input: The page table entry for the page that is being accessed.
  */
 void lru_ref(pgtbl_entry_t *p) {
-	printf("ref runs\n");
-
 	int frameRef = p->frame >> PAGE_SHIFT;
+
+	printf("ref runs, frame referenced is %d\n", frameRef);
 
 	//If the frameNumber has never been referenced before
 	if (!contains[frameRef]){

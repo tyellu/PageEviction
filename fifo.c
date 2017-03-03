@@ -5,13 +5,13 @@
 #include <stdlib.h>
 #include "pagetable.h"
 
-
 extern int memsize;
 
 extern int debug;
 
 extern struct frame *coremap;
- 
+
+
 int head;
 
 /* Page to evict is chosen using the fifo algorithm.
@@ -32,9 +32,8 @@ int fifo_evict() {
  * needed by the fifo algorithm.
  * Input: The page table entry for the page that is being accessed.
  */
-void fifo_ref(pgtbl_entry_t *p) {
+void fifo_ref(pgtbl_entry_t *p){
 
-	return;
 }
 
 /* Initialize any data structures needed for this 

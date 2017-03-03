@@ -73,7 +73,6 @@ struct frame {
  */
 extern struct frame *coremap;
 
-
 // Swap functions for use in other files
 extern int swap_init(unsigned swapsize);
 extern void swap_destroy(void);
