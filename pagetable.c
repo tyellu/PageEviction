@@ -179,11 +179,11 @@ char *find_physpage(addr_t vaddr, char type) {
 		// Increment miss count
 		miss_count++; 
 
+		// Get a new frame number from coremap 
+		int new_frame = allocate_frame(p);
+
 		// Bit operation, checks that frame is not on physical mem and not on swap
 		if((p->frame & PG_ONSWAP)==0){
-
-			// Get a new frame number from coremap 
-			int new_frame = allocate_frame(p);
 
 			// Bit shift over when storing into PTE to leave space for bits
 			p->frame = new_frame << PAGE_SHIFT;
@@ -196,9 +196,6 @@ char *find_physpage(addr_t vaddr, char type) {
 
 		// Bit operation, checks that frame is not on physical mem but on swap
 		}else{
-			
-			// Get a new frame number frame from coremap
-			int new_frame = allocate_frame(p);
 
 			// Try to read data from swap into frame
 			assert(swap_pagein(new_frame, p->swap_off) == 0);
@@ -211,6 +208,7 @@ char *find_physpage(addr_t vaddr, char type) {
 
 			// Mark it as not on swap since it was just swapped in
 			p->frame &= ~PG_ONSWAP;
+
 		}
 	// if valid
 	} else {
@@ -224,12 +222,12 @@ char *find_physpage(addr_t vaddr, char type) {
 	// Bit operation, make sure that p is marked valid and referenced. 
 	p->frame |= PG_VALID;
 	p->frame |= PG_REF;
-	
-	// increment ref_count
-	ref_count++;
 
 	// Call replacement algorithm's ref_fcn for this page
 	ref_fcn(p);
+
+	// increment ref_count
+	ref_count++;
 
 	// Return pointer into (simulated) physical memory at start of frame
 	return  &physmem[(p->frame >> PAGE_SHIFT)*SIMPAGESIZE];
