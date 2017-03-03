@@ -51,38 +51,56 @@ Queue* mainQ;
 //To record if the main Queue contains the frame
 bool *contains;
 
-void enqueue(Queue* queue, int frameRef){
+/* Create new node, set the frame number, and add to front of queue
+ * If the queue is empty, then set both front and rear;
+ * otherwise, only set front
+ */
+void enqueue(int frameRef){
 
 	//create new node with frame reference number
 	QNode* new = newQNode(frameRef);
-	new->next = queue->front;
+	
 
 	//If this is the first frame to be referenced i.e. the queue is empty
-	if (queue->isEmpty){
+	if (mainQ->isEmpty){
 
-		queue->front = queue->rear = new;
-		queue->isEmpty = 0;
+		mainQ->front = mainQ->rear = new;
+		mainQ->isEmpty = 0;
+		printf("it was empty, it is now %d\n", mainQ->isEmpty);
 
 	//Otherwise set new front
 	}else{
-		queue->front->prev=new;
-		queue->front=new;
+		printf("not empty runs\n");
+		new->next = mainQ->front;
+		mainQ->front->prev=new;
+		mainQ->front=new;
 	}
 
 	contains[frameRef]=1;
+	printf("tail after enq is %d\n", mainQ->rear->frameNumber);
+
+	return;
 }
 
-int dequeue(Queue* queue){
-	if(queue->front==queue->rear)
-		queue->front=NULL;
+/* Removes the tail of the queue, free the memory, and return the
+ * associated frameNumber
+ */
+int dequeue(){
+	//if only one node, then change the front
+	if(mainQ->front==mainQ->rear)
+		mainQ->front=NULL;
 
-	QNode* temp = queue->rear;
-	queue->rear = queue->rear->prev;
-
+	//set new node to hold the last element
+	QNode* temp = mainQ->rear;
 	int toRet=temp->frameNumber;
 	free(temp);
-	return toRet;
+	//remove the last element from queue
+	mainQ->rear = mainQ->rear->prev;
 
+	//Set contains to no
+	contains[toRet]=0;
+	
+	return toRet;
 }
 
 QNode* find (Queue* queue, int frameRef){
@@ -93,21 +111,39 @@ QNode* find (Queue* queue, int frameRef){
 	return temp;
 }
 
-
-
 /* Page to evict is chosen using the accurate LRU algorithm.
  * Returns the page frame number (which is also the index in the coremap)
  * for the page that is to be evicted.
  */
 
 int lru_evict() {
+	printf("evict begins\n");
 	//Ensure there is a frame to evict
-	assert(mainQ!=NULL);
-	assert(!mainQ->isEmpty);
+	assert(mainQ->isEmpty==0);
 
-	int frameToEvict = dequeue(mainQ);
-
+	int frameToEvict = dequeue();
+	printf("evict ends\n\n");
 	return frameToEvict;
+}
+
+void printq(){
+
+	printf("printq runs\n");
+
+	QNode* temp1 = newQNode(mainQ->front->frameNumber);
+
+	printf("The current queue is %d ", temp1->frameNumber);
+
+	printf("Is the next null?: %d\n", temp1->next == NULL);
+
+	while(temp1->next!=NULL){
+		temp1=temp1->next;
+		printf("and %d ", temp1->frameNumber);
+	}
+	printf("\n");
+
+	free(temp1);
+	return;
 }
 
 /* This function is called on each access to a page to update any information
@@ -116,30 +152,42 @@ int lru_evict() {
  */
 void lru_ref(pgtbl_entry_t *p) {
 	printf("ref runs\n");
+
 	int frameRef = p->frame >> PAGE_SHIFT;
 
+	//If the frameNumber has never been referenced before
 	if (!contains[frameRef]){
-		enqueue(mainQ, frameRef);
+
+		//Create new node, and add to front of queue
+		printf("enque runs\n");
+		enqueue(frameRef);
+
+
+	//Otherwise if the node is not at the front, then move it to the front
 	}else if(mainQ->front->frameNumber!=frameRef){
+		//Find the corresponding node
 		QNode* temp = find(mainQ, frameRef);
 
-		//remove from rear position
+		//unlink from current position
 		temp->prev->next = temp->next;
 		if(temp->next)
 			temp->prev->next=temp->next;
 
-		//If temp was the rear node
+		//If temp was the rear node, then change the rear as temp will be new front
 		if (mainQ->rear == temp){
 			mainQ->rear = temp->prev;
 			mainQ->rear->next = NULL;
 		}
 
+		//Put the temp node at the front of the queue and perform book keeping
 		temp->next = mainQ->front;
 		temp->prev = NULL;
 		mainQ->front->prev = temp;
 		mainQ->front=temp;
 	}
-
+	printq();
+	// printf("q head = %d and q tail = %d\n", mainQ->front->frameNumber, mainQ->rear->frameNumber);
+	printf("ref ends\n\nthe q head is %d\n", mainQ->front->frameNumber);
 	return;
 }
 
