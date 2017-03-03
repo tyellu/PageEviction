@@ -169,9 +169,8 @@ char *find_physpage(addr_t vaddr, char type) {
 		pgdir[idx] = init_second_level();
 
 	// Use vaddr to get index into 2nd-level page table and initialize 'p'      
-	pgtbl_entry_t* pgtbl = (pgtbl_entry_t*)(pgdir[idx].pde & PAGE_MASK);
-	//pgtbl_entry_t* pgtbl = (pgtbl_entry_t*)(pgdir[idx].pde - 1);
-	p = pgtbl + PGTBL_INDEX(vaddr);
+	pgtbl_entry_t* pageTable = (pgtbl_entry_t*)(pgdir[idx].pde & PAGE_MASK);
+	p = pageTable + PGTBL_INDEX(vaddr);
 
 	// Check if p is valid or not, on swap or not, and handle appropriately
 
@@ -184,15 +183,16 @@ char *find_physpage(addr_t vaddr, char type) {
 		//if frame isn't on swap
 		if((p->frame & PG_ONSWAP)==0){
 
-			// get frame from coremap and initialize
+			// get a new frame number from coremap and initialize
 			int new_frame = allocate_frame(p);
 
-			// Do we need to bitshift here?
+			//bit shift over when storing into PTE to leave space for bits
 			p->frame = new_frame << PAGE_SHIFT;
 
+			//initialize the new frame with vaddr
 			init_frame(new_frame, vaddr);
 
-			// set it to dirty
+			// set it to dirty since it's a new frame 
 			p->frame |= PG_DIRTY;
 
 		// if frame is on swap, then we need to bring it in
@@ -200,15 +200,17 @@ char *find_physpage(addr_t vaddr, char type) {
 			
 			// get frame from coremap and read data from swap into it
 			unsigned new_frame = allocate_frame(p);
+
+			// try to read data from swap into frame
 			assert(swap_pagein(new_frame, p->swap_off) == 0);
 
-			// bit shifting left by PAGE_SHIFT
+			//bit shift over when storing into PTE to leave space for bits
 			p->frame = new_frame << PAGE_SHIFT;
 
-			// Mark it as not dirty
+			// Mark it as not dirty since it was just swapped in and not changed
 			p->frame &= ~PG_DIRTY;
 
-			// Mark it as not on swap
+			// Mark it as not on swap since it was just swapped in
 			p->frame &= ~PG_ONSWAP;
 		}
 	// if valid
