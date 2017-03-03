@@ -35,10 +35,10 @@ int clock_evict() {
 		else {
 			clock_bit[i] = 1;
 			clock_hand = i;
-			return i;
+			return clock_hand;
 		}
 	}
-	return 0;
+	return -1;
 }
 
 /* This function is called on each access to a page to update any information
