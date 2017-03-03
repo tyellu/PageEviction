@@ -27,9 +27,73 @@ typedef struct Queue
     bool isEmpty;
 } Queue;
 
-Queue *mainQ;
+Queue* createQueue(){
+	Queue* queue = (Queue *)malloc( sizeof( Queue ) );
+	queue->front=queue->rear=NULL;
+	queue->isEmpty=1;
+	return queue;
+}
+
+QNode* newQNode( unsigned pageNumber )
+{
+    // Allocate memory and assign 'pageNumber'
+    QNode* temp = (QNode *)malloc( sizeof( QNode ) );
+    temp->frameNumber = pageNumber;
+ 
+    // Initialize prev and next as NULL
+    temp->prev = temp->next = NULL;
+ 
+    return temp;
+}
+
+Queue* mainQ;
+
 //To record if the main Queue contains the frame
 bool *contains;
+
+void enqueue(Queue* queue, int frameRef){
+
+	//create new node with frame reference number
+	QNode* new = newQNode(frameRef);
+	new->next = queue->front;
+
+	//If this is the first frame to be referenced i.e. the queue is empty
+	if (queue->isEmpty){
+
+		queue->front = queue->rear = new;
+		queue->isEmpty = 0;
+
+	//Otherwise set new front
+	}else{
+		queue->front->prev=new;
+		queue->front=new;
+	}
+
+	contains[frameRef]=1;
+}
+
+int dequeue(Queue* queue){
+	if(queue->front==queue->rear)
+		queue->front=NULL;
+
+	QNode* temp = queue->rear;
+	queue->rear = queue->rear->prev;
+
+	int toRet=temp->frameNumber;
+	free(temp);
+	return toRet;
+
+}
+
+QNode* find (Queue* queue, int frameRef){
+	QNode* temp = queue->front;
+	while (temp->frameNumber!=frameRef){
+		temp = temp->next;
+	}
+	return temp;
+}
+
+
 
 /* Page to evict is chosen using the accurate LRU algorithm.
  * Returns the page frame number (which is also the index in the coremap)
@@ -38,31 +102,11 @@ bool *contains;
 
 int lru_evict() {
 	//Ensure there is a frame to evict
-	printf("evict runs\n");
+	assert(mainQ!=NULL);
 	assert(!mainQ->isEmpty);
 
-	//Otherwise grab frame number from the front of the queue
-	int frameToEvict = mainQ->front->frameNumber;
+	int frameToEvict = dequeue(mainQ);
 
-	//Set the front of the queue to the next node
-	mainQ->front = mainQ->front->next;
-
-	//If the queue is now empty
-	if (mainQ->front == NULL){
-		//Set indicator
-		mainQ->isEmpty = 1;
-		//Set rear to null as well
-		mainQ->rear = NULL;
-	//Other wise it's not empty
-	}else{
-		//Delete the previous of the new front
-		mainQ->front->prev = NULL;
-	}
-
-	//The queue now doesn't contain frameToEvict, set indicator
-	contains[frameToEvict]=0;
-
-	printf("evict runs fine\n");
 	return frameToEvict;
 }
 
@@ -72,59 +116,30 @@ int lru_evict() {
  */
 void lru_ref(pgtbl_entry_t *p) {
 	printf("ref runs\n");
+	int frameRef = p->frame >> PAGE_SHIFT;
 
-	//If the frame is contained our queue
-	if (contains[p->frame]){
-		//Set a temprary node to find the frame node
-		QNode *temp = mainQ->front;
+	if (!contains[frameRef]){
+		enqueue(mainQ, frameRef);
+	}else if(mainQ->front->frameNumber!=frameRef){
+		QNode* temp = find(mainQ, frameRef);
 
-		//Search for the frame node
-		while(temp->frameNumber != p->frame){
-			temp = temp->next;
-		}
-		//If there are more than 1 node in the queue, proceed, otherwise do nothing
-		if (temp != mainQ->front){
-			//If the found node is the first one
-			if (temp == mainQ->front){
+		//remove from rear position
+		temp->prev->next = temp->next;
+		if(temp->next)
+			temp->prev->next=temp->next;
 
-					//Remove the head and point head to next node, bookkeeping
-					mainQ->front = temp->next;
-					mainQ->front->prev = NULL;
-
-					//Move the node to the end of the queue and bookpeeking
-					temp->prev = mainQ->rear;
-					temp->next = NULL;
-					mainQ->rear->next = temp;
-					mainQ->rear = temp;
-
-			//If the found node is rear, we dont do anything, otherwise:
-			} else if (!(temp == mainQ->rear)){
-				//Unlink the node
-				temp->prev->next=temp->next;
-				temp->next->prev = temp->prev;
-
-				//Add the node to the end of the queue and perform book keeping
-				temp->prev = mainQ->rear;
-				temp->next = NULL;
-				mainQ->rear->next = temp;
-				mainQ->rear = temp;
-			}
+		//If temp was the rear node
+		if (mainQ->rear == temp){
+			mainQ->rear = temp->prev;
+			mainQ->rear->next = NULL;
 		}
 
-	//If the frame isn't in our queue, that means it was never accessed before
-	} else{
-		//create new node
-		QNode *new = (QNode*)malloc(sizeof(QNode*));
-		new->frameNumber = p->frame;
-
-		//link it to the end of the queue
-		new->prev = mainQ->rear;
-		mainQ->rear = new;
-		
-		//Add it to our contained queue
-		contains[p->frame] = 1;
+		temp->next = mainQ->front;
+		temp->prev = NULL;
+		mainQ->front->prev = temp;
+		mainQ->front=temp;
 	}
-	printf("ref runs fine\n");
+
 	return;
 }
 
@@ -133,16 +148,10 @@ void lru_ref(pgtbl_entry_t *p) {
  * replacement algorithm 
  */
 void lru_init() {
-	printf("init runs\n");
 	//allocate the main queue and perform bookkeeping
-	mainQ = (Queue*)malloc(sizeof(QNode)*memsize);
-
-	mainQ->front = NULL;
-	mainQ->rear = NULL;
-	mainQ->isEmpty = 1;
+	mainQ = createQueue();
 
 	//Allocate the contains array and wipe everything to 0
 	contains = malloc(sizeof(bool)*memsize);
 	memset(contains, 0, sizeof(bool) * memsize);
-	printf("init runs fine\n");
 }
