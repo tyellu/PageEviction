@@ -194,8 +194,6 @@ char *find_physpage(addr_t vaddr, char type) {
 			// Set it to dirty since it's a new frame 
 			p->frame |= PG_DIRTY;
 
-            coremap[new_frame].vaddr = (vaddr >> PAGE_SHIFT) << PAGE_SHIFT;
-
 		// Bit operation, checks that frame is not on physical mem but on swap
 		}else{
 
@@ -210,8 +208,6 @@ char *find_physpage(addr_t vaddr, char type) {
 
 			// Mark it as not on swap since it was just swapped in
 			p->frame &= ~PG_ONSWAP;
-
-			coremap[new_frame].vaddr = (vaddr >> PAGE_SHIFT) << PAGE_SHIFT;
 
 		}
 	// if valid

@@ -14,6 +14,7 @@ extern struct frame *coremap;
 extern char *tracefile;
 
 addr_t *instrn;
+addr_t *memory;
 
 int instrn_size;
 
@@ -37,7 +38,7 @@ int opt_evict() {
 	int frame_index = 0;
 	int i;
 	for(i=0; i < memsize; i++){
-		addr_t curr_frame_addr = coremap[i].vaddr;
+		addr_t curr_frame_addr = memory[i];
 		int temp_distance = 0;
 		int found = 0;
 		int j;
@@ -48,13 +49,15 @@ int opt_evict() {
 					frame_index = i;
 					max_distance = temp_distance;
 					found = 1;
+					break;
 				}else{
 					found = 1;
+					break;
 				}
 			}
 		}
 
-		if(temp_distance == (instrn_size - instrn_num) && (found == 0)){
+		if(found == 0){
 			frame_index = i;
 			break;
 		}
@@ -68,7 +71,13 @@ int opt_evict() {
  * Input: The page table entry for the page that is being accessed.
  */
 void opt_ref(pgtbl_entry_t *p) {
+	
+	int curr_frame = p->frame >> PAGE_SHIFT; 
+
+	memory[curr_frame] = instrn[instrn_num];
+
 	instrn_num = (instrn_num + 1);
+
 	return;
 }
 
@@ -111,4 +120,6 @@ void opt_init() {
 
 	// curr_instrn = instrn;
 	instrn_num = 0;
+
+	memory = malloc(memsize * sizeof(unsigned long));
 }
