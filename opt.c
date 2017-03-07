@@ -15,18 +15,8 @@ extern char *tracefile;
 
 addr_t *instrn;
 addr_t *memory;
-
 int instrn_size;
-
-// addr_t *curr_instrn;
-
 int instrn_num;
-
-// void print_coreMap(struct frame *cmap){
-// 	for(int i=0; i<memsize; i++){
-// 		printf("%d: %lx\n",i,coremap[i].vaddr);
-// 	}
-// }
 
 
 /* Page to evict is chosen using the optimal (aka MIN) algorithm. 
@@ -37,11 +27,14 @@ int opt_evict() {
 	int max_distance = 0;
 	int frame_index = 0;
 	int i;
+	//loop throught the memory to get the frames in memory
 	for(i=0; i < memsize; i++){
 		addr_t curr_frame_addr = memory[i];
 		int temp_distance = 0;
 		int found = 0;
 		int j;
+		//loop through the tracefile to find next occurrence
+		//of the current frame
 		for(j = instrn_num; j < (instrn_size); j++){
 			temp_distance++;
 			if(instrn[j] == curr_frame_addr){
@@ -71,7 +64,7 @@ int opt_evict() {
  * Input: The page table entry for the page that is being accessed.
  */
 void opt_ref(pgtbl_entry_t *p) {
-	
+	//update the memory to the current state and increment the instructon num
 	int curr_frame = p->frame >> PAGE_SHIFT; 
 
 	memory[curr_frame] = instrn[instrn_num];
@@ -99,7 +92,7 @@ void opt_init() {
 	}
 
 	instrn_size = 0;
-	//read each &vaddr into an array
+	//goes throught the tracefile to find the length
 	while(fgets(buf, MAXLINE, tfp) != NULL) {
 		if(buf[0] != '=') {
 			instrn_size++;
@@ -107,8 +100,10 @@ void opt_init() {
 	}
 
 	rewind(tfp);
+	//create an array to store the tracefile
 	instrn = malloc(sizeof(addr_t)*instrn_size);
 	int i = 0;
+
 	//read each &vaddr into an array
 	while(fgets(buf, MAXLINE, tfp) != NULL) {
 		if(buf[0] != '=') {
@@ -120,6 +115,6 @@ void opt_init() {
 
 	// curr_instrn = instrn;
 	instrn_num = 0;
-
+	//create an array to store the memory
 	memory = malloc(memsize * sizeof(unsigned long));
 }
