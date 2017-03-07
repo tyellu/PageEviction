@@ -35,11 +35,13 @@ int instrn_num;
 int opt_evict() {
 	int max_distance = 0;
 	int frame_index = 0;
-	for(int i=0; i < memsize; i++){
+	int i;
+	for(i=0; i < memsize; i++){
 		addr_t curr_frame_addr = coremap[i].vaddr;
 		int temp_distance = 0;
 		int found = 0;
-		for(int j = instrn_num; j < instrn_size; j++){
+		int j;
+		for(j = instrn_num; j < (instrn_size); j++){
 			temp_distance++;
 			if(instrn[j] == curr_frame_addr){
 				if(max_distance < temp_distance){
