@@ -63,8 +63,8 @@ int allocate_frame(pgtbl_entry_t *p) {
 			// update dirty evict count
 			evict_dirty_count++;
 		}
-		
-		// set victim frame invalid and on swap
+
+		// set victim frame invalid and on swap since its not on memory, and on swap
 		victim_page->frame &= ~PG_VALID;
 		victim_page->frame |= PG_ONSWAP;
 	}
