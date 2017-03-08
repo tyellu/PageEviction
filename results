@@ -1,0 +1,528 @@
+  Mem size: 50  Trace file: tr-simpleloop.ref  Algorithm: rand
+  Command: ./sim -f traceprogs/tr-simpleloop.ref -m 50 -s 100000 -a rand
+Hit count: 7778
+Miss count: 3022
+Clean evictions: 274
+Dirty evictions: 2698
+Total references : 10800
+Hit rate: 72.0185
+Miss rate: 27.9815
+
+
+  Mem size: 50  Trace file: tr-simpleloop.ref  Algorithm: fifo
+  Command: ./sim -f traceprogs/tr-simpleloop.ref -m 50 -s 100000 -a fifo
+Hit count: 7828
+Miss count: 2972
+Clean evictions: 207
+Dirty evictions: 2715
+Total references : 10800
+Hit rate: 72.4815
+Miss rate: 27.5185
+
+
+  Mem size: 50  Trace file: tr-simpleloop.ref  Algorithm: clock
+  Command: ./sim -f traceprogs/tr-simpleloop.ref -m 50 -s 100000 -a clock
+Hit count: 8005
+Miss count: 2795
+Clean evictions: 104
+Dirty evictions: 2641
+Total references : 10800
+Hit rate: 74.1204
+Miss rate: 25.8796
+
+
+  Mem size: 50  Trace file: tr-simpleloop.ref  Algorithm: opt
+  Command: ./sim -f traceprogs/tr-simpleloop.ref -m 50 -s 100000 -a opt
+Hit count: 8128
+Miss count: 2672
+Clean evictions: 26
+Dirty evictions: 2596
+Total references : 10800
+Hit rate: 75.2593
+Miss rate: 24.7407
+
+
+  Mem size: 100  Trace file: tr-simpleloop.ref  Algorithm: rand
+  Command: ./sim -f traceprogs/tr-simpleloop.ref -m 100 -s 100000 -a rand
+Hit count: 8046
+Miss count: 2754
+Clean evictions: 49
+Dirty evictions: 2605
+Total references : 10800
+Hit rate: 74.5000
+Miss rate: 25.5000
+
+
+  Mem size: 100  Trace file: tr-simpleloop.ref  Algorithm: fifo
+  Command: ./sim -f traceprogs/tr-simpleloop.ref -m 100 -s 100000 -a fifo
+Hit count: 8047
+Miss count: 2753
+Clean evictions: 44
+Dirty evictions: 2609
+Total references : 10800
+Hit rate: 74.5093
+Miss rate: 25.4907
+
+
+  Mem size: 100  Trace file: tr-simpleloop.ref  Algorithm: clock
+  Command: ./sim -f traceprogs/tr-simpleloop.ref -m 100 -s 100000 -a clock
+Hit count: 8117
+Miss count: 2683
+Clean evictions: 2
+Dirty evictions: 2581
+Total references : 10800
+Hit rate: 75.1574
+Miss rate: 24.8426
+
+
+  Mem size: 100  Trace file: tr-simpleloop.ref  Algorithm: opt
+  Command: ./sim -f traceprogs/tr-simpleloop.ref -m 100 -s 100000 -a opt
+Hit count: 8163
+Miss count: 2637
+Clean evictions: 0
+Dirty evictions: 2537
+Total references : 10800
+Hit rate: 75.5833
+Miss rate: 24.4167
+
+
+  Mem size: 150  Trace file: tr-simpleloop.ref  Algorithm: rand
+  Command: ./sim -f traceprogs/tr-simpleloop.ref -m 150 -s 100000 -a rand
+Hit count: 8083
+Miss count: 2717
+Clean evictions: 22
+Dirty evictions: 2545
+Total references : 10800
+Hit rate: 74.8426
+Miss rate: 25.1574
+
+
+  Mem size: 150  Trace file: tr-simpleloop.ref  Algorithm: fifo
+  Command: ./sim -f traceprogs/tr-simpleloop.ref -m 150 -s 100000 -a fifo
+Hit count: 8086
+Miss count: 2714
+Clean evictions: 16
+Dirty evictions: 2548
+Total references : 10800
+Hit rate: 74.8704
+Miss rate: 25.1296
+
+
+  Mem size: 150  Trace file: tr-simpleloop.ref  Algorithm: clock
+  Command: ./sim -f traceprogs/tr-simpleloop.ref -m 150 -s 100000 -a clock
+Hit count: 8119
+Miss count: 2681
+Clean evictions: 0
+Dirty evictions: 2531
+Total references : 10800
+Hit rate: 75.1759
+Miss rate: 24.8241
+
+
+  Mem size: 150  Trace file: tr-simpleloop.ref  Algorithm: opt
+  Command: ./sim -f traceprogs/tr-simpleloop.ref -m 150 -s 100000 -a opt
+Hit count: 8163
+Miss count: 2637
+Clean evictions: 0
+Dirty evictions: 2487
+Total references : 10800
+Hit rate: 75.5833
+Miss rate: 24.4167
+
+
+  Mem size: 200  Trace file: tr-simpleloop.ref  Algorithm: rand
+  Command: ./sim -f traceprogs/tr-simpleloop.ref -m 200 -s 100000 -a rand
+Hit count: 8094
+Miss count: 2706
+Clean evictions: 18
+Dirty evictions: 2488
+Total references : 10800
+Hit rate: 74.9444
+Miss rate: 25.0556
+
+
+  Mem size: 200  Trace file: tr-simpleloop.ref  Algorithm: fifo
+  Command: ./sim -f traceprogs/tr-simpleloop.ref -m 200 -s 100000 -a fifo
+Hit count: 8094
+Miss count: 2706
+Clean evictions: 12
+Dirty evictions: 2494
+Total references : 10800
+Hit rate: 74.9444
+Miss rate: 25.0556
+
+
+  Mem size: 200  Trace file: tr-simpleloop.ref  Algorithm: clock
+  Command: ./sim -f traceprogs/tr-simpleloop.ref -m 200 -s 100000 -a clock
+Hit count: 8119
+Miss count: 2681
+Clean evictions: 0
+Dirty evictions: 2481
+Total references : 10800
+Hit rate: 75.1759
+Miss rate: 24.8241
+
+
+  Mem size: 200  Trace file: tr-simpleloop.ref  Algorithm: opt
+  Command: ./sim -f traceprogs/tr-simpleloop.ref -m 200 -s 100000 -a opt
+Hit count: 8163
+Miss count: 2637
+Clean evictions: 0
+Dirty evictions: 2437
+Total references : 10800
+Hit rate: 75.5833
+Miss rate: 24.4167
+
+
+  Mem size: 50  Trace file: tr-matmul.ref  Algorithm: rand
+  Command: ./sim -f traceprogs/tr-matmul.ref -m 50 -s 100000 -a rand
+Hit count: 1972821
+Miss count: 995579
+Clean evictions: 956271
+Dirty evictions: 39258
+Total references : 2968400
+Hit rate: 66.4608
+Miss rate: 33.5392
+
+
+  Mem size: 50  Trace file: tr-matmul.ref  Algorithm: fifo
+  Command: ./sim -f traceprogs/tr-matmul.ref -m 50 -s 100000 -a fifo
+Hit count: 1841124
+Miss count: 1127276
+Clean evictions: 1083237
+Dirty evictions: 43989
+Total references : 2968400
+Hit rate: 62.0241
+Miss rate: 37.9759
+
+
+  Mem size: 50  Trace file: tr-matmul.ref  Algorithm: clock
+  Command: ./sim -f traceprogs/tr-matmul.ref -m 50 -s 100000 -a clock
+Hit count: 1927160
+Miss count: 1041240
+Clean evictions: 1040086
+Dirty evictions: 1104
+Total references : 2968400
+Hit rate: 64.9225
+Miss rate: 35.0775
+
+
+  Mem size: 50  Trace file: tr-matmul.ref  Algorithm: opt
+  Command: ./sim -f traceprogs/tr-matmul.ref -m 50 -s 100000 -a opt
+Hit count: 2380945
+Miss count: 587455
+Clean evictions: 586324
+Dirty evictions: 1081
+Total references : 2968400
+Hit rate: 80.2097
+Miss rate: 19.7903
+
+
+  Mem size: 100  Trace file: tr-matmul.ref  Algorithm: rand
+  Command: ./sim -f traceprogs/tr-matmul.ref -m 100 -s 100000 -a rand
+Hit count: 2645544
+Miss count: 322856
+Clean evictions: 315329
+Dirty evictions: 7427
+Total references : 2968400
+Hit rate: 89.1236
+Miss rate: 10.8764
+
+
+  Mem size: 100  Trace file: tr-matmul.ref  Algorithm: fifo
+  Command: ./sim -f traceprogs/tr-matmul.ref -m 100 -s 100000 -a fifo
+Hit count: 1884856
+Miss count: 1083544
+Clean evictions: 1061225
+Dirty evictions: 22219
+Total references : 2968400
+Hit rate: 63.4974
+Miss rate: 36.5026
+
+
+  Mem size: 100  Trace file: tr-matmul.ref  Algorithm: clock
+  Command: ./sim -f traceprogs/tr-matmul.ref -m 100 -s 100000 -a clock
+Hit count: 1966613
+Miss count: 1001787
+Clean evictions: 1000609
+Dirty evictions: 1078
+Total references : 2968400
+Hit rate: 66.2516
+Miss rate: 33.7484
+
+
+  Mem size: 100  Trace file: tr-matmul.ref  Algorithm: opt
+  Command: ./sim -f traceprogs/tr-matmul.ref -m 100 -s 100000 -a opt
+Hit count: 2875606
+Miss count: 92794
+Clean evictions: 91614
+Dirty evictions: 1080
+Total references : 2968400
+Hit rate: 96.8739
+Miss rate: 3.1261
+
+
+  Mem size: 150  Trace file: tr-matmul.ref  Algorithm: rand
+  Command: ./sim -f traceprogs/tr-matmul.ref -m 150 -s 100000 -a rand
+Hit count: 2872357
+Miss count: 96043
+Clean evictions: 93552
+Dirty evictions: 2341
+Total references : 2968400
+Hit rate: 96.7645
+Miss rate: 3.2355
+
+
+  Mem size: 150  Trace file: tr-matmul.ref  Algorithm: fifo
+  Command: ./sim -f traceprogs/tr-matmul.ref -m 150 -s 100000 -a fifo
+Hit count: 2933991
+Miss count: 34409
+Clean evictions: 32946
+Dirty evictions: 1313
+Total references : 2968400
+Hit rate: 98.8408
+Miss rate: 1.1592
+
+
+  Mem size: 150  Trace file: tr-matmul.ref  Algorithm: clock
+  Command: ./sim -f traceprogs/tr-matmul.ref -m 150 -s 100000 -a clock
+Hit count: 2933718
+Miss count: 34682
+Clean evictions: 33454
+Dirty evictions: 1078
+Total references : 2968400
+Hit rate: 98.8316
+Miss rate: 1.1684
+
+
+  Mem size: 150  Trace file: tr-matmul.ref  Algorithm: opt
+  Command: ./sim -f traceprogs/tr-matmul.ref -m 150 -s 100000 -a opt
+Hit count: 2941789
+Miss count: 26611
+Clean evictions: 25382
+Dirty evictions: 1079
+Total references : 2968400
+Hit rate: 99.1035
+Miss rate: 0.8965
+
+
+  Mem size: 200  Trace file: tr-matmul.ref  Algorithm: rand
+  Command: ./sim -f traceprogs/tr-matmul.ref -m 200 -s 100000 -a rand
+Hit count: 2911882
+Miss count: 56518
+Clean evictions: 54702
+Dirty evictions: 1616
+Total references : 2968400
+Hit rate: 98.0960
+Miss rate: 1.9040
+
+
+  Mem size: 200  Trace file: tr-matmul.ref  Algorithm: fifo
+  Command: ./sim -f traceprogs/tr-matmul.ref -m 200 -s 100000 -a fifo
+Hit count: 2934513
+Miss count: 33887
+Clean evictions: 32435
+Dirty evictions: 1252
+Total references : 2968400
+Hit rate: 98.8584
+Miss rate: 1.1416
+
+
+  Mem size: 200  Trace file: tr-matmul.ref  Algorithm: clock
+  Command: ./sim -f traceprogs/tr-matmul.ref -m 200 -s 100000 -a clock
+Hit count: 2935516
+Miss count: 32884
+Clean evictions: 31607
+Dirty evictions: 1077
+Total references : 2968400
+Hit rate: 98.8922
+Miss rate: 1.1078
+
+
+  Mem size: 200  Trace file: tr-matmul.ref  Algorithm: opt
+  Command: ./sim -f traceprogs/tr-matmul.ref -m 200 -s 100000 -a opt
+Hit count: 2949139
+Miss count: 19261
+Clean evictions: 17982
+Dirty evictions: 1079
+Total references : 2968400
+Hit rate: 99.3511
+Miss rate: 0.6489
+
+
+  Mem size: 50  Trace file: tr-blocked.ref  Algorithm: rand
+  Command: ./sim -f traceprogs/tr-blocked.ref -m 50 -s 100000 -a rand
+Hit count: 2516953
+Miss count: 8399
+Clean evictions: 5835
+Dirty evictions: 2514
+Total references : 2525352
+Hit rate: 99.6674
+Miss rate: 0.3326
+
+
+  Mem size: 50  Trace file: tr-blocked.ref  Algorithm: fifo
+  Command: ./sim -f traceprogs/tr-blocked.ref -m 50 -s 100000 -a fifo
+Hit count: 2518809
+Miss count: 6543
+Clean evictions: 4237
+Dirty evictions: 2256
+Total references : 2525352
+Hit rate: 99.7409
+Miss rate: 0.2591
+
+
+  Mem size: 50  Trace file: tr-blocked.ref  Algorithm: clock
+  Command: ./sim -f traceprogs/tr-blocked.ref -m 50 -s 100000 -a clock
+Hit count: 2519538
+Miss count: 5814
+Clean evictions: 3354
+Dirty evictions: 2410
+Total references : 2525352
+Hit rate: 99.7698
+Miss rate: 0.2302
+
+
+  Mem size: 50  Trace file: tr-blocked.ref  Algorithm: opt
+  Command: ./sim -f traceprogs/tr-blocked.ref -m 50 -s 100000 -a opt
+Hit count: 2521596
+Miss count: 3756
+Clean evictions: 2625
+Dirty evictions: 1081
+Total references : 2525352
+Hit rate: 99.8513
+Miss rate: 0.1487
+
+
+  Mem size: 100  Trace file: tr-blocked.ref  Algorithm: rand
+  Command: ./sim -f traceprogs/tr-blocked.ref -m 100 -s 100000 -a rand
+Hit count: 2520046
+Miss count: 5306
+Clean evictions: 3490
+Dirty evictions: 1716
+Total references : 2525352
+Hit rate: 99.7899
+Miss rate: 0.2101
+
+
+  Mem size: 100  Trace file: tr-blocked.ref  Algorithm: fifo
+  Command: ./sim -f traceprogs/tr-blocked.ref -m 100 -s 100000 -a fifo
+Hit count: 2520965
+Miss count: 4387
+Clean evictions: 2810
+Dirty evictions: 1477
+Total references : 2525352
+Hit rate: 99.8263
+Miss rate: 0.1737
+
+
+  Mem size: 100  Trace file: tr-blocked.ref  Algorithm: clock
+  Command: ./sim -f traceprogs/tr-blocked.ref -m 100 -s 100000 -a clock
+Hit count: 2520966
+Miss count: 4386
+Clean evictions: 2660
+Dirty evictions: 1626
+Total references : 2525352
+Hit rate: 99.8263
+Miss rate: 0.1737
+
+
+  Mem size: 100  Trace file: tr-blocked.ref  Algorithm: opt
+  Command: ./sim -f traceprogs/tr-blocked.ref -m 100 -s 100000 -a opt
+Hit count: 2522309
+Miss count: 3043
+Clean evictions: 1870
+Dirty evictions: 1073
+Total references : 2525352
+Hit rate: 99.8795
+Miss rate: 0.1205
+
+
+  Mem size: 150  Trace file: tr-blocked.ref  Algorithm: rand
+  Command: ./sim -f traceprogs/tr-blocked.ref -m 150 -s 100000 -a rand
+Hit count: 2520902
+Miss count: 4450
+Clean evictions: 2812
+Dirty evictions: 1488
+Total references : 2525352
+Hit rate: 99.8238
+Miss rate: 0.1762
+
+
+  Mem size: 150  Trace file: tr-blocked.ref  Algorithm: fifo
+  Command: ./sim -f traceprogs/tr-blocked.ref -m 150 -s 100000 -a fifo
+Hit count: 2521074
+Miss count: 4278
+Clean evictions: 2705
+Dirty evictions: 1423
+Total references : 2525352
+Hit rate: 99.8306
+Miss rate: 0.1694
+
+
+  Mem size: 150  Trace file: tr-blocked.ref  Algorithm: clock
+  Command: ./sim -f traceprogs/tr-blocked.ref -m 150 -s 100000 -a clock
+Hit count: 2521527
+Miss count: 3825
+Clean evictions: 2617
+Dirty evictions: 1058
+Total references : 2525352
+Hit rate: 99.8485
+Miss rate: 0.1515
+
+
+  Mem size: 150  Trace file: tr-blocked.ref  Algorithm: opt
+  Command: ./sim -f traceprogs/tr-blocked.ref -m 150 -s 100000 -a opt
+Hit count: 2522814
+Miss count: 2538
+Clean evictions: 1320
+Dirty evictions: 1068
+Total references : 2525352
+Hit rate: 99.8995
+Miss rate: 0.1005
+
+
+  Mem size: 200  Trace file: tr-blocked.ref  Algorithm: rand
+  Command: ./sim -f traceprogs/tr-blocked.ref -m 200 -s 100000 -a rand
+Hit count: 2521485
+Miss count: 3867
+Clean evictions: 2344
+Dirty evictions: 1323
+Total references : 2525352
+Hit rate: 99.8469
+Miss rate: 0.1531
+
+
+  Mem size: 200  Trace file: tr-blocked.ref  Algorithm: fifo
+  Command: ./sim -f traceprogs/tr-blocked.ref -m 200 -s 100000 -a fifo
+Hit count: 2522151
+Miss count: 3201
+Clean evictions: 1905
+Dirty evictions: 1096
+Total references : 2525352
+Hit rate: 99.8732
+Miss rate: 0.1268
+
+
+  Mem size: 200  Trace file: tr-blocked.ref  Algorithm: clock
+  Command: ./sim -f traceprogs/tr-blocked.ref -m 200 -s 100000 -a clock
+Hit count: 2522098
+Miss count: 3254
+Clean evictions: 1994
+Dirty evictions: 1060
+Total references : 2525352
+Hit rate: 99.8711
+Miss rate: 0.1289
+
+
+  Mem size: 200  Trace file: tr-blocked.ref  Algorithm: opt
+  Command: ./sim -f traceprogs/tr-blocked.ref -m 200 -s 100000 -a opt
+Hit count: 2523064
+Miss count: 2288
+Clean evictions: 1027
+Dirty evictions: 1061
+Total references : 2525352
+Hit rate: 99.9094
+Miss rate: 0.0906
+
+

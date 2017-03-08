@@ -21,8 +21,6 @@ int head;
 int fifo_evict() {
 	int frame = head;
 
-	head++;
-
 	head = (head + 1) % memsize;
 
 	return frame;
