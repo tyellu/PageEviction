@@ -14,9 +14,7 @@ alg[3]=lru
 alg[3]=opt
 
 #tracefile
-trace[0]="tr-simpleloop.ref"
-trace[1]="tr-matmul.ref"
-trace[2]="tr-blocked.ref"
+trace[0]="tr-is_palindrome.ref"
 
 for t in "${trace[@]}"
 do
