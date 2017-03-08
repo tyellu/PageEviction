@@ -45,8 +45,7 @@ int allocate_frame(pgtbl_entry_t *p) {
 
 		//case 1: victim frame has not been modified hence a clean eviction
 		if(!((victim_page->frame) & (PG_DIRTY))){
-			// mark frame invalid
-			victim_page->frame = victim_page->frame & (~PG_VALID);
+
 			// increment clean evict count
 			evict_clean_count++;
 		}
@@ -60,14 +59,14 @@ int allocate_frame(pgtbl_entry_t *p) {
 
 			// update swap_offset
 			victim_page->swap_off = swap_offset;
-		
-			// set victim frame invalid and on swap
-			victim_page->frame &= ~PG_VALID;
-			victim_page->frame |= PG_ONSWAP;
 
 			// update dirty evict count
 			evict_dirty_count++;
 		}
+		
+		// set victim frame invalid and on swap
+		victim_page->frame &= ~PG_VALID;
+		victim_page->frame |= PG_ONSWAP;
 	}
 
 	// Record information for virtual page that will now be stored in frame
