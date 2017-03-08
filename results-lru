@@ -1,0 +1,176 @@
+  Mem size: 50  Trace file: tr-simpleloop.ref  Algorithm: lru
+  Command: ./sim -f traceprogs/tr-simpleloop.ref -m 50 -s 100000 -a lru
+Hit count: 8013
+Miss count: 2787
+Clean evictions: 97
+Dirty evictions: 2640
+Total references : 10800
+Hit rate: 74.1944
+Miss rate: 25.8056
+
+
+  Mem size: 100  Trace file: tr-simpleloop.ref  Algorithm: lru
+  Command: ./sim -f traceprogs/tr-simpleloop.ref -m 100 -s 100000 -a lru
+Hit count: 8120
+Miss count: 2680
+Clean evictions: 0
+Dirty evictions: 2580
+Total references : 10800
+Hit rate: 75.1852
+Miss rate: 24.8148
+
+
+  Mem size: 150  Trace file: tr-simpleloop.ref  Algorithm: lru
+  Command: ./sim -f traceprogs/tr-simpleloop.ref -m 150 -s 100000 -a lru
+Hit count: 8120
+Miss count: 2680
+Clean evictions: 0
+Dirty evictions: 2530
+Total references : 10800
+Hit rate: 75.1852
+Miss rate: 24.8148
+
+
+  Mem size: 200  Trace file: tr-simpleloop.ref  Algorithm: lru
+  Command: ./sim -f traceprogs/tr-simpleloop.ref -m 200 -s 100000 -a lru
+Hit count: 8120
+Miss count: 2680
+Clean evictions: 0
+Dirty evictions: 2480
+Total references : 10800
+Hit rate: 75.1852
+Miss rate: 24.8148
+
+
+  Mem size: 50  Trace file: tr-matmul.ref  Algorithm: lru
+  Command: ./sim -f traceprogs/tr-matmul.ref -m 50 -s 100000 -a lru
+Hit count: 1927167
+Miss count: 1041233
+Clean evictions: 1040080
+Dirty evictions: 1103
+Total references : 2968400
+Hit rate: 64.9228
+Miss rate: 35.0772
+
+
+  Mem size: 100  Trace file: tr-matmul.ref  Algorithm: lru
+  Command: ./sim -f traceprogs/tr-matmul.ref -m 100 -s 100000 -a lru
+Hit count: 1961952
+Miss count: 1006448
+Clean evictions: 1005271
+Dirty evictions: 1077
+Total references : 2968400
+Hit rate: 66.0946
+Miss rate: 33.9054
+
+
+  Mem size: 150  Trace file: tr-matmul.ref  Algorithm: lru
+  Command: ./sim -f traceprogs/tr-matmul.ref -m 150 -s 100000 -a lru
+Hit count: 2935518
+Miss count: 32882
+Clean evictions: 31655
+Dirty evictions: 1077
+Total references : 2968400
+Hit rate: 98.8923
+Miss rate: 1.1077
+
+
+  Mem size: 200  Trace file: tr-matmul.ref  Algorithm: lru
+  Command: ./sim -f traceprogs/tr-matmul.ref -m 200 -s 100000 -a lru
+Hit count: 2935529
+Miss count: 32871
+Clean evictions: 31594
+Dirty evictions: 1077
+Total references : 2968400
+Hit rate: 98.8926
+Miss rate: 1.1074
+
+
+  Mem size: 50  Trace file: tr-blocked.ref  Algorithm: lru
+  Command: ./sim -f traceprogs/tr-blocked.ref -m 50 -s 100000 -a lru
+Hit count: 2520064
+Miss count: 5288
+Clean evictions: 2877
+Dirty evictions: 2361
+Total references : 2525352
+Hit rate: 99.7906
+Miss rate: 0.2094
+
+
+  Mem size: 100  Trace file: tr-blocked.ref  Algorithm: lru
+  Command: ./sim -f traceprogs/tr-blocked.ref -m 100 -s 100000 -a lru
+Hit count: 2521526
+Miss count: 3826
+Clean evictions: 2648
+Dirty evictions: 1078
+Total references : 2525352
+Hit rate: 99.8485
+Miss rate: 0.1515
+
+
+  Mem size: 150  Trace file: tr-blocked.ref  Algorithm: lru
+  Command: ./sim -f traceprogs/tr-blocked.ref -m 150 -s 100000 -a lru
+Hit count: 2521531
+Miss count: 3821
+Clean evictions: 2613
+Dirty evictions: 1058
+Total references : 2525352
+Hit rate: 99.8487
+Miss rate: 0.1513
+
+
+  Mem size: 200  Trace file: tr-blocked.ref  Algorithm: lru
+  Command: ./sim -f traceprogs/tr-blocked.ref -m 200 -s 100000 -a lru
+Hit count: 2521655
+Miss count: 3697
+Clean evictions: 2439
+Dirty evictions: 1058
+Total references : 2525352
+Hit rate: 99.8536
+Miss rate: 0.1464
+
+
+  Mem size: 50  Trace file: tr-is_palindrome.ref  Algorithm: lru
+  Command: ./sim -f traceprogs/tr-is_palindrome.ref -m 50 -s 100000 -a lru
+Hit count: 8817646
+Miss count: 210
+Clean evictions: 52
+Dirty evictions: 108
+Total references : 8817856
+Hit rate: 99.9976
+Miss rate: 0.0024
+
+
+  Mem size: 100  Trace file: tr-is_palindrome.ref  Algorithm: lru
+  Command: ./sim -f traceprogs/tr-is_palindrome.ref -m 100 -s 100000 -a lru
+Hit count: 8817730
+Miss count: 126
+Clean evictions: 0
+Dirty evictions: 26
+Total references : 8817856
+Hit rate: 99.9986
+Miss rate: 0.0014
+
+
+  Mem size: 150  Trace file: tr-is_palindrome.ref  Algorithm: lru
+  Command: ./sim -f traceprogs/tr-is_palindrome.ref -m 150 -s 100000 -a lru
+Hit count: 8817731
+Miss count: 125
+Clean evictions: 0
+Dirty evictions: 0
+Total references : 8817856
+Hit rate: 99.9986
+Miss rate: 0.0014
+
+
+  Mem size: 200  Trace file: tr-is_palindrome.ref  Algorithm: lru
+  Command: ./sim -f traceprogs/tr-is_palindrome.ref -m 200 -s 100000 -a lru
+Hit count: 8817731
+Miss count: 125
+Clean evictions: 0
+Dirty evictions: 0
+Total references : 8817856
+Hit rate: 99.9986
+Miss rate: 0.0014
+
+

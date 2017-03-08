@@ -1,0 +1,176 @@
+  Mem size: 50  Trace file: tr-is_palindrome.ref  Algorithm: rand
+  Command: ./sim -f traceprogs/tr-is_palindrome.ref -m 50 -s 100000 -a rand
+Hit count: 8817539
+Miss count: 317
+Clean evictions: 123
+Dirty evictions: 144
+Total references : 8817856
+Hit rate: 99.9964
+Miss rate: 0.0036
+
+
+  Mem size: 50  Trace file: tr-is_palindrome.ref  Algorithm: fifo
+  Command: ./sim -f traceprogs/tr-is_palindrome.ref -m 50 -s 100000 -a fifo
+Hit count: 8817572
+Miss count: 284
+Clean evictions: 89
+Dirty evictions: 145
+Total references : 8817856
+Hit rate: 99.9968
+Miss rate: 0.0032
+
+
+  Mem size: 50  Trace file: tr-is_palindrome.ref  Algorithm: clock
+  Command: ./sim -f traceprogs/tr-is_palindrome.ref -m 50 -s 100000 -a clock
+Hit count: 8817635
+Miss count: 221
+Clean evictions: 56
+Dirty evictions: 115
+Total references : 8817856
+Hit rate: 99.9975
+Miss rate: 0.0025
+
+
+  Mem size: 50  Trace file: tr-is_palindrome.ref  Algorithm: opt
+  Command: ./sim -f traceprogs/tr-is_palindrome.ref -m 50 -s 100000 -a opt
+Hit count: 8817710
+Miss count: 146
+Clean evictions: 11
+Dirty evictions: 85
+Total references : 8817856
+Hit rate: 99.9983
+Miss rate: 0.0017
+
+
+  Mem size: 100  Trace file: tr-is_palindrome.ref  Algorithm: rand
+  Command: ./sim -f traceprogs/tr-is_palindrome.ref -m 100 -s 100000 -a rand
+Hit count: 8817714
+Miss count: 142
+Clean evictions: 4
+Dirty evictions: 38
+Total references : 8817856
+Hit rate: 99.9984
+Miss rate: 0.0016
+
+
+  Mem size: 100  Trace file: tr-is_palindrome.ref  Algorithm: fifo
+  Command: ./sim -f traceprogs/tr-is_palindrome.ref -m 100 -s 100000 -a fifo
+Hit count: 8817711
+Miss count: 145
+Clean evictions: 0
+Dirty evictions: 45
+Total references : 8817856
+Hit rate: 99.9984
+Miss rate: 0.0016
+
+
+  Mem size: 100  Trace file: tr-is_palindrome.ref  Algorithm: clock
+  Command: ./sim -f traceprogs/tr-is_palindrome.ref -m 100 -s 100000 -a clock
+Hit count: 8817725
+Miss count: 131
+Clean evictions: 0
+Dirty evictions: 31
+Total references : 8817856
+Hit rate: 99.9985
+Miss rate: 0.0015
+
+
+  Mem size: 100  Trace file: tr-is_palindrome.ref  Algorithm: opt
+  Command: ./sim -f traceprogs/tr-is_palindrome.ref -m 100 -s 100000 -a opt
+Hit count: 8817731
+Miss count: 125
+Clean evictions: 0
+Dirty evictions: 25
+Total references : 8817856
+Hit rate: 99.9986
+Miss rate: 0.0014
+
+
+  Mem size: 150  Trace file: tr-is_palindrome.ref  Algorithm: rand
+  Command: ./sim -f traceprogs/tr-is_palindrome.ref -m 150 -s 100000 -a rand
+Hit count: 8817731
+Miss count: 125
+Clean evictions: 0
+Dirty evictions: 0
+Total references : 8817856
+Hit rate: 99.9986
+Miss rate: 0.0014
+
+
+  Mem size: 150  Trace file: tr-is_palindrome.ref  Algorithm: fifo
+  Command: ./sim -f traceprogs/tr-is_palindrome.ref -m 150 -s 100000 -a fifo
+Hit count: 8817731
+Miss count: 125
+Clean evictions: 0
+Dirty evictions: 0
+Total references : 8817856
+Hit rate: 99.9986
+Miss rate: 0.0014
+
+
+  Mem size: 150  Trace file: tr-is_palindrome.ref  Algorithm: clock
+  Command: ./sim -f traceprogs/tr-is_palindrome.ref -m 150 -s 100000 -a clock
+Hit count: 8817731
+Miss count: 125
+Clean evictions: 0
+Dirty evictions: 0
+Total references : 8817856
+Hit rate: 99.9986
+Miss rate: 0.0014
+
+
+  Mem size: 150  Trace file: tr-is_palindrome.ref  Algorithm: opt
+  Command: ./sim -f traceprogs/tr-is_palindrome.ref -m 150 -s 100000 -a opt
+Hit count: 8817731
+Miss count: 125
+Clean evictions: 0
+Dirty evictions: 0
+Total references : 8817856
+Hit rate: 99.9986
+Miss rate: 0.0014
+
+
+  Mem size: 200  Trace file: tr-is_palindrome.ref  Algorithm: rand
+  Command: ./sim -f traceprogs/tr-is_palindrome.ref -m 200 -s 100000 -a rand
+Hit count: 8817731
+Miss count: 125
+Clean evictions: 0
+Dirty evictions: 0
+Total references : 8817856
+Hit rate: 99.9986
+Miss rate: 0.0014
+
+
+  Mem size: 200  Trace file: tr-is_palindrome.ref  Algorithm: fifo
+  Command: ./sim -f traceprogs/tr-is_palindrome.ref -m 200 -s 100000 -a fifo
+Hit count: 8817731
+Miss count: 125
+Clean evictions: 0
+Dirty evictions: 0
+Total references : 8817856
+Hit rate: 99.9986
+Miss rate: 0.0014
+
+
+  Mem size: 200  Trace file: tr-is_palindrome.ref  Algorithm: clock
+  Command: ./sim -f traceprogs/tr-is_palindrome.ref -m 200 -s 100000 -a clock
+Hit count: 8817731
+Miss count: 125
+Clean evictions: 0
+Dirty evictions: 0
+Total references : 8817856
+Hit rate: 99.9986
+Miss rate: 0.0014
+
+
+  Mem size: 200  Trace file: tr-is_palindrome.ref  Algorithm: opt
+  Command: ./sim -f traceprogs/tr-is_palindrome.ref -m 200 -s 100000 -a opt
+Hit count: 8817731
+Miss count: 125
+Clean evictions: 0
+Dirty evictions: 0
+Total references : 8817856
+Hit rate: 99.9986
+Miss rate: 0.0014
+
+
