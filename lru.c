@@ -133,14 +133,14 @@ QNode* find (int frameRef){
  */
 
 int lru_evict() {
-	// printf("evict begins\n");
+	printf("evict begins\n");
 
 	//Ensure there is a frame to evict
 	assert(mainQ->isEmpty==0);
 
 	int frameToEvict = dequeue();
-	// printq();
-	// printf("evict ends, evicted %d\n", frameToEvict);
+	printq();
+	printf("evict ends, evicted %d\n", frameToEvict);
 	return frameToEvict;
 }
 
@@ -152,7 +152,7 @@ int lru_evict() {
 void lru_ref(pgtbl_entry_t *p) {
 	int frameRef = p->frame >> PAGE_SHIFT;
 
-	//printf("ref runs, frame referenced is %d\n", frameRef);
+	printf("ref runs, frame referenced is %d\n", frameRef);
 
 	//If the frame has never been referenced before
 	if (!contains[frameRef]){
@@ -183,8 +183,8 @@ void lru_ref(pgtbl_entry_t *p) {
 		mainQ->front->prev = temp;
 		mainQ->front=temp;
 	}
-	//printq();
-	//printf("ref ends\n\n");
+	printq();
+	printf("ref ends\n\n");
 	return;
 }
 
